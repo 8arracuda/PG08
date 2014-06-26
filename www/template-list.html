@@ -6,7 +6,7 @@
         <h3 class="topcoat-list__header">(showing {{ sections.length }})</h3>
         <ul class="topcoat-list__container">
             <li ng-repeat="section in sections">
-                <a href="#{{ section.fileName }}">
+                <a href="#{{ section.id }}/{{ section.fileName }}/{{ section.controllerName }}">
                     <h4>{{ section.nameLong }}</h4>
                 </a>
             </li>

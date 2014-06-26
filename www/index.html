@@ -49,20 +49,25 @@
     var sdApp = angular.module('sdApp', ['ngRoute']);
 
     sdApp.config(function ($routeProvider) {
+        console.log('foo');
         $routeProvider.
                 when('/', {
                     templateUrl: 'template-list.html',
                     controller: 'SectionListCtrl'
                 }).
-                when('/:sectionName', {
-                    templateUrl: function(params){ return params.sectionName + '.html'; },
-                    controller: 'SectionDetailCtrl'
+                when('/:sectionId/:fileName/:controllerName', {
+                    templateUrl: function (params) {
+                        return params.fileName;
+                    },
+                    controllerProvider: function (params) {
+                        return params.controllerName;
+                    }
                 }).
                 otherwise({
                     redirectTo: '/'
                 });
+        console.log('foo2');
     });
-
 
     sdApp.controller('SectionListCtrl', function ($scope, sections) {
 
@@ -71,8 +76,38 @@
         });
     });
 
-
     sdApp.controller('SectionDetailCtrl', function ($scope, $routeParams, sections) {
+
+        sections.find($routeParams.sectionId, function (selectedSection) {
+            $scope.selectedSection = selectedSection;
+        });
+    });
+
+    sdApp.controller('LocalStorageCtrl', function ($scope, $routeParams, sections) {
+
+        sections.find($routeParams.sectionId, function (selectedSection) {
+            $scope.selectedSection = selectedSection;
+        });
+
+    });
+
+    sdApp.controller('SessionStorageCtrl', function ($scope, $routeParams, sections) {
+
+        sections.find($routeParams.sectionId, function (selectedSection) {
+            $scope.selectedSection = selectedSection;
+        });
+
+    });
+
+    sdApp.controller('WebSqlCtrl', function ($scope, $routeParams, sections) {
+
+        sections.find($routeParams.sectionId, function (selectedSection) {
+            $scope.selectedSection = selectedSection;
+        });
+
+    });
+
+    sdApp.controller('IndexedDbCtrl', function ($scope, $routeParams, sections) {
 
         sections.find($routeParams.sectionId, function (selectedSection) {
             $scope.selectedSection = selectedSection;
@@ -84,35 +119,41 @@
 
         var sections = [
             {'id': '1',
-                'fileName': 'indexedDB',
+                'fileName': 'indexedDB.html',
+                'nameShort': 'indexedDB',
                 'nameLong': 'IndexedDB',
                 'controllerName': 'IndexedDbCtrl'
             },
             {'id': '2',
-                'fileName': 'webSql',
+                'fileName': 'webSql.html',
+                'nameShort': 'webSql',
                 'nameLong': 'Web SQL',
                 'controllerName': 'WebSqlCtrl'
             },
             {'id': '3',
-                'fileName': 'localStorage',
+                'fileName': 'localStorage.html',
+                'nameShort': 'localStorage',
                 'nameLong': 'LocalStorage',
                 'controllerName': 'LocalStorageCtrl'
             },
             {'id': '4',
-                'fileName': 'sessionStorage',
+                'fileName': 'sessionStorage.html',
+                'nameShort': 'sessionStorage',
                 'nameLong': 'SessionStorage',
                 'controllerName': 'SessionStorageCtrl'
             },
             {'id': '5',
-                'fileName': 'PG_SQLite',
+                'fileName': 'PG_SQLite.html',
+                'nameShort': 'PG_SQLite',
                 'nameLong': 'PhoneGap SQLite Plugin',
                 'controllerName': 'PGSQLiteCtrl'
             },
             {'id': '6',
-                'fileName': 'PG_more',
+                'fileName': 'PG_more.html',
+                'nameShort': 'PG_more',
                 'nameLong': 'PhoneGap ...more...',
                 'controllerName': 'PGMoreCtrl'
-            },
+            }
         ];
 
         return {
