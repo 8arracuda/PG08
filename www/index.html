@@ -54,8 +54,8 @@
                     templateUrl: 'template-list.html',
                     controller: 'SectionListCtrl'
                 }).
-                when('/:sectionId', {
-                    templateUrl: 'template-detail.html',
+                when('/:sectionName', {
+                    templateUrl: function(params){ return params.sectionName + '.html'; },
                     controller: 'SectionDetailCtrl'
                 }).
                 otherwise({
@@ -84,22 +84,34 @@
 
         var sections = [
             {'id': '1',
-                'name': 'IndexedDB'
+                'fileName': 'indexedDB',
+                'nameLong': 'IndexedDB',
+                'controllerName': 'IndexedDbCtrl'
             },
             {'id': '2',
-                'name': 'Web SQL'
+                'fileName': 'webSql',
+                'nameLong': 'Web SQL',
+                'controllerName': 'WebSqlCtrl'
             },
             {'id': '3',
-                'name': 'LocalStorage'
+                'fileName': 'localStorage',
+                'nameLong': 'LocalStorage',
+                'controllerName': 'LocalStorageCtrl'
             },
             {'id': '4',
-                'name': 'SessionStorage'
+                'fileName': 'sessionStorage',
+                'nameLong': 'SessionStorage',
+                'controllerName': 'SessionStorageCtrl'
             },
             {'id': '5',
-                'name': 'PhoneGap SQLite Plugin'
+                'fileName': 'PG_SQLite',
+                'nameLong': 'PhoneGap SQLite Plugin',
+                'controllerName': 'PGSQLiteCtrl'
             },
             {'id': '6',
-                'name': 'PhoneGap ...more...'
+                'fileName': 'PG_more',
+                'nameLong': 'PhoneGap ...more...',
+                'controllerName': 'PGMoreCtrl'
             },
         ];
 
