@@ -115,6 +115,22 @@
 
     });
 
+    sdApp.controller('PGSQLiteCtrl', function ($scope, $routeParams, sections) {
+
+        sections.find($routeParams.sectionId, function (selectedSection) {
+            $scope.selectedSection = selectedSection;
+        });
+
+    });
+
+    sdApp.controller('PGMoreCtrl', function ($scope, $routeParams, sections) {
+
+        sections.find($routeParams.sectionId, function (selectedSection) {
+            $scope.selectedSection = selectedSection;
+        });
+
+    });
+
     sdApp.factory('sections', function () {
 
         var sections = [
