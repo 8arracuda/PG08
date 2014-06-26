@@ -48,8 +48,10 @@
 
     var sdApp = angular.module('sdApp', ['ngRoute']);
 
+    lsTest = '1';
+
     sdApp.config(function ($routeProvider) {
-        console.log('foo');
+
         $routeProvider.
                 when('/', {
                     templateUrl: 'template-list.html',
@@ -66,7 +68,8 @@
                 otherwise({
                     redirectTo: '/'
                 });
-        console.log('foo2');
+
+
     });
 
     sdApp.controller('SectionListCtrl', function ($scope, sections) {
@@ -88,6 +91,35 @@
         sections.find($routeParams.sectionId, function (selectedSection) {
             $scope.selectedSection = selectedSection;
         });
+
+        $( "#but_saveOneItem" ).on( "click", function() {
+            localStorage.setItem('foo', 'bar');
+            localStorage.setItem('test', 'foo');
+            $scope.localStorage = localStorage;
+        });
+
+        $( "#but_deleteOneItem" ).on( "click", function() {
+            localStorage.removeItem('foo');
+            $scope.localStorage = localStorage;
+        });
+
+
+        $( "#but_showStoredItems" ).on( "click", function() {
+            alert('there are ' + localStorage.length + ' items in localstorage');
+
+        });
+            $scope.localStorage = localStorage;
+
+
+
+        //$('#lsmodel').on("change", function() {
+        //    alert('d');
+        //});
+
+
+
+
+
 
     });
 

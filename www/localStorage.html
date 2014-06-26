@@ -1,13 +1,52 @@
 <div ng-controller="LocalStorageCtrl">
-    <div class="topcoat-list list">
+    <div class="topcoat-navigation-bar">
         <button class="topcoat-button" onclick="javascript:history.back()">
             back
         </button>
 
-        <h3 class="topcoat-list__header">{{ selectedSection.nameLong }}</h3>
+        <div class="topcoat-navigation-bar__item center full">
+            <h1 class="topcoat-navigation-bar__title">{{ selectedSection.nameLong }}</h1>
+        </div>
+    </div>
+
+    <div class="topcoat-list list">
+
+        <h3 class="topcoat-list__header"></h3>
         <ul class="topcoat-list__container">
             <li>
-                LocalStorageCtrl
+                Stored Items: <span class="topcoat-notification">{{ localStorage.length }}</span>
+            </li>
+        </ul>
+    </div>
+    <button id="but_saveOneItem" class="topcoat-button">
+        save 1 item
+    </button>
+    <button id="but_loadOneItem" class="topcoat-button">
+        load 1 item
+    </button>
+
+    <button id="but_deleteOneItem" class="topcoat-button">
+        delete 1 item
+    </button>
+
+    <button id="but_showStoredItems" class="topcoat-button">
+        show stored items
+    </button>
+
+    <div class="topcoat-list list">
+        <h3 class="topcoat-list__header">{{ selectedSection.nameLong }}</h3>
+        <ul class="topcoat-list__container">
+            <li ng-repeat="(key, value) in localStorage">
+
+                <b>key:</b> {{ key }}<br>
+                <input ng-model="lsmodel" type="text" class="topcoat-text-input" value="{{value}}">
+            </li>
+
+
+            <li>----</li>
+            <li>
+                <b>key:</b> test<br>
+                <input ng-model="lsTest" type="text" class="topcoat-text-input">
             </li>
         </ul>
     </div>
