@@ -1,0 +1,13 @@
+<div ng-controller="SectionListCtrl">
+<div class="topcoat-list list">
+        <h3 class="topcoat-list__header">(showing {{ sections.length }})</h3>
+        <ul class="topcoat-list__container">
+            <li ng-repeat="section in sections">
+                <a href="#{{ section.id }}">
+                    <h4>{{ section.name }}</h4>
+
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
